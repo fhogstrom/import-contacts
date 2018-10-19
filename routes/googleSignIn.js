@@ -7,7 +7,7 @@ var axios = require('axios');
 
  router.get('/google', passport.authenticate('google', {
 
-   scope: ['https://www.googleapis.com/auth/contacts']
+   scope: ['https://www.googleapis.com/auth/contacts','https://www.googleapis.com/auth/plus.login']
 
  }));
 
