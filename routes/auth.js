@@ -99,7 +99,7 @@ const vcard = require('vcard-generator');
                       console.log('Some error occured - file either not saved or corrupted file saved.');
                     } else {
                       console.log('It\'s saved!');
-                      serverRes.redirect("/download");
+                      serverRes.redirect("/google");
                     }
                   });
                 }
