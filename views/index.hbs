@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/general.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+    <link rel="icon" href="\images\biit-transparent.png">
+    <title>Salesforce to Google Contacts vCard</title>
+</head>
+
+<body>
+<div class="logo">
+    <img src="\images\biit-transparent.png" alt="biit-logo-transparent">
+</div>
+<div class="right-corner">
+    <img src="\images\icons-corner-blue.svg" alt="biit-logo-transparent">
+</div>
+<div class="left-corner">
+    <img src="\images\icons-corner-turquoise.svg" alt="biit-logo-transparent">
+</div>
+<div class="login">
+   <div class="login-triangle"></div>
+   <h2 class="login-header">Log in to SalesForce</h2>
+   <form class="login-container" action="/auth" method="POST">
+      <p>
+         <input id="validate-username" class="validate" type="text" name="username" placeholder="Salesforce Username">
+      </p>
+      <p>
+         <input id="validate-password" class="validate" type="password" name="password" placeholder="Salesforce Password">
+      </p>
+      <p>
+         <input id="validate-token" class="validate" type="password" name="securityToken" placeholder="Salesforce Security Token">
+      </p>
+      <p>
+         <input type="submit" id="submit-btn" value="Fetch Resources">
+      </p>
+   </form>
+</div>
+
+<div id="overlay">
+ <div class="dialog">
+        <a class="close-classic" onclick="Common.closeOverlay()"></a>
+ </div>
+<div class="lds-roller-container">
+    <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    </div>
+    </div>
+</div>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script src="/javascript/common.js"></script>
+</body>
+</html>

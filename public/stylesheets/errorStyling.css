@@ -1,0 +1,29 @@
+body {
+	margin: 0;
+	position: relative;
+    min-height: 100vh;
+ 
+}
+
+body::before, body::after {
+	content: "";
+	position: absolute;
+	height: 50%;
+	left: 0;
+	right: 0;
+}
+
+body::before {
+	top: 0;
+	background: linear-gradient(to right, rgb(222, 222, 222) 49.99%, #1798c1 50%);
+}
+
+body::after {
+	bottom: 0;
+	background: linear-gradient(to right, rgb(42, 18, 96) 49.99%, rgb(111, 193, 186) 50%);
+}
+
+h1 {
+    position: absolute;
+    font-size: 50px;
+}
