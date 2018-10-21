@@ -9,11 +9,11 @@ const path = require('path');
 
 require('dotenv').config()
 
-const Auth = require('./routes/auth');
+const Auth = require('./routes/SFauth');
 const index = require('./routes/index');
 const downloadCSV = require('./routes/downloadVCF');
 const googleSignIn = require('./routes/googleSignIn');
-const googleAuth = require('./routes/googleAuth');
+const googleAuth = require('./routes/googleAuthCB');
 
 
 
