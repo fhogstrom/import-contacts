@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const jsforce = require('jsforce');
 const fs = require('fs');
+const vcard = require('vcard-generator');
 
 
 
@@ -43,26 +44,60 @@ const fs = require('fs');
                   }
                 });
                 
+                const employeesVcard = [];
+                for (let i = 0; i < employees.length; i++) {
+                const vcardContent = vcard.generate({
+                  name: {
+                    familyName: employees[i].Name,
+                  },
+                  works: [{
+                    organization: 'Biit Oy',
+                    title: employees[i].SFL5__Primary_Skill__c,
+                    role: employees[i].SFL5__Primary_Skill__c
+                  }],
+                  emails: [{
+                    type: 'Work',
+                    text: employees[i].Resource_email__c,
+                  },
+                   {
+                    type: 'Work',
+                    text: employees[i].Resource_email__c
+                  }],
+                  phones: [{
+                    type: 'Work',
+                    text: employees[i].Mobile__c
+                  }],
+                  addresses: [{
+                    type: 'Home address',
+                    street: employees[i].Address__c,
+                    locality: employees[i].City__c.toUpperCase(),
+                    country: 'Finland',
+                  }]
+                 });
+                 employeesVcard.push(vcardContent);
+                }
                 
-                const finalEmployeeFormat = JSON.stringify(employees, null, 4);
+
+                const manipulatedVcard = [];
+                for (let x = 0; x < employeesVcard.length; x++) {
+                var res = employeesVcard[x].replace(/BEGIN:VCARD/g, "\nBEGIN:VCARD");
+                manipulatedVcard.push(res);
+                    }
+
+                const finalEmployeeFormat = manipulatedVcard.join("\n");
              
-                    fs.appendFile(__dirname + '/contact-details.json', finalEmployeeFormat , 'utf8', function (err) {
+                    fs.appendFile(__dirname + '/employee-contact-details.vcf', finalEmployeeFormat , 'utf8', function (err) {
                     if (err) {
                       console.log('Some error occured - file either not saved or corrupted file saved.');
                     } else {
                       console.log('It\'s saved!');
-                      serverRes.redirect("/google");
+                      serverRes.redirect("/download");
                     }
                   });
                 }
              });
          });
    });
-
-   
-
-
-
 
 module.exports = router;
 
